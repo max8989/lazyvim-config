@@ -25,13 +25,17 @@ jobs:
         run: bash tests/install.sh
       - name: Install Linux runtime tools
         if: runner.os == 'Linux'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential curl unzip ripgrep fd-find fzf
           sudo npm install --global tree-sitter-cli
+          gh release download --repo jesseduffield/lazygit --pattern '*Linux_x86_64.tar.gz' --dir "$RUNNER_TEMP/lazygit-release"
+          sudo tar -xzf "$RUNNER_TEMP/lazygit-release"/*.tar.gz -C /usr/local/bin lazygit
       - name: Install macOS runtime tools
         if: runner.os == 'macOS'
-        run: brew install ripgrep fd fzf tree-sitter lua-language-server stylua shfmt
+        run: brew install ripgrep fd fzf tree-sitter lua-language-server stylua shfmt lazygit
       - name: Install the profile and Python provider
         run: |
           ./scripts/install.sh
@@ -53,7 +57,7 @@ jobs:
       - name: Install Arch runtime tools
         run: |
           pacman -Syu --noconfirm --needed neovim git base-devel curl unzip ripgrep fd fzf \
-            tree-sitter-cli nodejs npm python python-pynvim lua-language-server stylua shfmt
+            tree-sitter-cli nodejs npm python python-pynvim lua-language-server stylua shfmt lazygit
       - uses: actions/checkout@v7.0.1
       - run: nvim --headless -u NONE -l tests/portability.lua .
       - run: bash tests/install.sh
