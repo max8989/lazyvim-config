@@ -31,7 +31,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential curl unzip ripgrep fd-find fzf
           sudo npm install --global tree-sitter-cli
-          gh release download --repo jesseduffield/lazygit --pattern '*Linux_x86_64.tar.gz' --dir "$RUNNER_TEMP/lazygit-release"
+          gh release download --repo jesseduffield/lazygit --pattern '*linux_x86_64.tar.gz' --dir "$RUNNER_TEMP/lazygit-release"
           sudo tar -xzf "$RUNNER_TEMP/lazygit-release"/*.tar.gz -C /usr/local/bin lazygit
       - name: Install macOS runtime tools
         if: runner.os == 'macOS'
