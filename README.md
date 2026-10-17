@@ -3,7 +3,9 @@
 My Omarchy LazyVim setup, extracted from `omarchy-configs/config/nvim` and
 adapted for **NixOS, Arch Linux, and macOS**. It preserves the Nordfox theme,
 personal bindings, snippets, completion, Git tools, Obsidian support, and
-terminal behavior. Neovim 0.12 or newer is required for the captured setup.
+terminal behavior. Neovim 0.12 or newer and tree-sitter CLI 0.26.1 or newer
+are required. Install the CLI through your OS package manager, rather than npm,
+as required by the pinned tree-sitter plugin.
 
 ## Install
 
@@ -13,7 +15,7 @@ Install the dependencies for your OS below, then clone and link this repo:
 git clone git@github.com:max8989/lazyvim-config.git ~/repos/lazyvim-config
 cd ~/repos/lazyvim-config
 ./scripts/install.sh
-nvim --headless '+Lazy! restore' +qa
+nvim --headless '+Lazy! restore' '+luafile scripts/install-parsers.lua' +qa
 nvim
 ```
 
@@ -25,7 +27,7 @@ To try it alongside your existing setup:
 
 ```sh
 NVIM_APPNAME=nvim-lazyvim ./scripts/install.sh
-NVIM_APPNAME=nvim-lazyvim nvim --headless '+Lazy! restore' +qa
+NVIM_APPNAME=nvim-lazyvim nvim --headless '+Lazy! restore' '+luafile scripts/install-parsers.lua' +qa
 NVIM_APPNAME=nvim-lazyvim nvim
 ```
 
@@ -41,7 +43,7 @@ tools come from Nix instead of downloaded Linux binaries.
 ```sh
 nix develop
 ./scripts/install.sh
-nvim --headless '+Lazy! restore' +qa
+nvim --headless '+Lazy! restore' '+luafile scripts/install-parsers.lua' +qa
 nvim
 ```
 
@@ -82,6 +84,7 @@ sudo pacman -Syu --needed neovim git base-devel curl unzip ripgrep fd fzf \
 
 For Wayland, install `wl-clipboard`; for X11, install `xclip`. Mason remains
 available for additional language tools on Arch.
+The system Lua language server is preferred when it is installed.
 
 ## macOS
 
@@ -99,6 +102,7 @@ For the separate preview profile, replace `/nvim/python` with
 `/nvim-lazyvim/python`. Both Apple Silicon and Intel Macs use this setup.
 Mason remains available on macOS. Local copying uses the native clipboard;
 inside tmux, pasting uses `pbpaste` and copying also emits OSC 52.
+The Homebrew Lua language server is used directly.
 
 ## Personal settings
 
@@ -149,6 +153,7 @@ mechanism. Its lazygit shortcuts follow LazyVim and Omarchy conventions:
 - [Omarchy Neovim manual](https://github.com/omacom/omarchy/blob/quattro/manual/16-neovim.md)
 - [Omarchy TUIs manual](https://github.com/omacom/omarchy/blob/quattro/manual/21-tuis.md)
 - [Neovim providers](https://neovim.io/doc/user/provider.html)
+- [Pinned tree-sitter setup](https://github.com/nvim-treesitter/nvim-treesitter/blob/a1bcffc8095c142ad1f7a9671a4ae180333f9209/README.md)
 
 Original starter licensing and source attribution are retained in
 [LICENSE](LICENSE) and [NOTICE](NOTICE).

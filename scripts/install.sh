@@ -30,4 +30,4 @@ done
 mkdir -p "$config_home"
 ln -s "$repo_dir" "$target"
 printf 'Installed %s -> %s\n' "$target" "$repo_dir"
-printf 'Restore plugins with: NVIM_APPNAME=%s nvim --headless "+Lazy! restore" +qa\n' "$app_name"
+printf 'From this checkout, run: NVIM_APPNAME=%s nvim --headless "+Lazy! restore" "+luafile scripts/install-parsers.lua" +qa\n' "$app_name"

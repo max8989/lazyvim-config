@@ -28,7 +28,8 @@ local attached = vim.wait(30000, function()
   end
   return false
 end, 100)
-assert(attached, "The Lua language server did not attach")
+assert(attached, "The Lua language server did not attach; executable="
+  .. vim.fn.exepath("lua-language-server") .. "; filetype=" .. vim.bo.filetype)
 local messages = vim.api.nvim_exec2("messages", { output = true }).output
 assert(not messages:find("Failed to run"), messages)
 assert(not messages:find("Error detected"), messages)
