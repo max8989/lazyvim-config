@@ -11,6 +11,13 @@ assert(vim.fn.py3eval("1 + 1") == 2, "The Python provider could not execute code
 assert(vim.fn.exists(":UltiSnipsEdit") == 2, "UltiSnips was not loaded")
 assert(require("cmp").get_config().sources[1] ~= nil, "Completion sources are missing")
 
+-- Exercise the Python-backed engine, including placeholder expansion.
+vim.cmd.enew()
+local snippet_keys = [[i<C-R>=UltiSnips#Anon('provider_${1:ready}')<CR><Esc>]]
+vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(snippet_keys, true, false, true), "xt", false)
+assert(vim.api.nvim_get_current_line() == "provider_ready", "UltiSnips could not expand a snippet")
+vim.bo.modified = false
+
 for _, key in ipairs({ "<leader>gg", "<leader>gG", "<leader>lg", "<leader>ff", "<leader>ld" }) do
   assert(vim.fn.maparg(key, "n") ~= "", "Missing keymap: " .. key)
 end
@@ -33,7 +40,7 @@ assert(attached, "The Lua language server did not attach; executable="
 local messages = vim.api.nvim_exec2("messages", { output = true }).output
 assert(not messages:find("Failed to run"), messages)
 assert(not messages:find("Error detected"), messages)
-print("PASS: LazyVim startup, theme, Python, snippets, completion, keymaps, and Lua LSP")
+print("PASS: LazyVim startup, theme, Python, snippet expansion, completion, keymaps, and Lua LSP")
 end, debug.traceback)
 if not ok then
   io.stderr:write(err .. "\n")

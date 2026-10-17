@@ -40,6 +40,11 @@ The flake supplies Neovim with Python support and its external tools. Mason is
 disabled on NixOS; the Lua language server, formatters, compiler, and parser
 tools come from Nix instead of downloaded Linux binaries.
 
+The regular NixOS `neovim` package can have its Python provider disabled. If
+UltiSnips reports that Python is unavailable, launch through `nix develop`
+below or install this flake's package permanently. Installing `pynvim` alone
+does not enable a provider that the editor wrapper explicitly disables.
+
 ```sh
 nix develop
 ./scripts/install.sh
