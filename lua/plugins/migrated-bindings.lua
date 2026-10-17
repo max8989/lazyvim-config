@@ -1,7 +1,6 @@
 -- Plugins required by the migrated bindings. LazyVim retains its other defaults.
 return {
   { "folke/flash.nvim", enabled = false },
-  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "ibhagwan/fzf-lua", lazy = false,  config = function() require("migration.fzf-lua") end },
   { "smoka7/hop.nvim", lazy = false,  config = function() require("migration.nvim_hop") end },
   { "akinsho/toggleterm.nvim", lazy = false,  config = function() require("migration.toggleterm") end },
@@ -11,7 +10,6 @@ return {
   { "mizlan/iswap.nvim", lazy = false,  config = function() require("migration.iswap") end },
   { "kevinhwang91/nvim-hlslens", lazy = false,  config = function() require("migration.hlslens") end },
   { "kevinhwang91/nvim-ufo", lazy = false, dependencies = { "kevinhwang91/promise-async" }, init = function() vim.o.foldlevel = 99; vim.o.foldlevelstart = 99 end, config = function() require("migration.nvim_ufo") end },
-  { "nvim-tree/nvim-tree.lua", lazy = false,  config = function() require("migration.nvim-tree") end },
   { "nvim-treesitter/nvim-treesitter-textobjects", lazy = false, branch = "main", config = function() require("migration.treesitter-textobjects") end },
   { "lewis6991/gitsigns.nvim", lazy = false,  config = function() require("migration.gitsigns") end },
   {

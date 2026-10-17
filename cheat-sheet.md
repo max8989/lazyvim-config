@@ -16,41 +16,21 @@ Leader key: `<Space>`
 | File Navigation & Search | `<leader>fg` | Live grep (search text) |
 | File Navigation & Search | `<leader><leader>` | Recent files |
 | File Navigation & Search | `<leader>bb` | Open buffers |
-| File Explorer (Neo-tree) | `<C-n>` | Toggle file tree |
-| Neo-tree Navigation | `<CR>` | Open file/directory |
-| Neo-tree Navigation | `<Space>` | Toggle node expansion |
-| Neo-tree Navigation | `<BS>` | Navigate up to parent directory |
-| Neo-tree Navigation | `.` | Set as root directory |
-| Neo-tree Navigation | `H` | Toggle hidden files |
-| Neo-tree Navigation | `<` / `>` | Previous/next source |
-| Neo-tree File Operations | `a` | Add new file |
-| Neo-tree File Operations | `A` | Add new directory |
-| Neo-tree File Operations | `d` | Delete file/directory |
-| Neo-tree File Operations | `r` | Rename file |
-| Neo-tree File Operations | `c` | Copy (with destination) |
-| Neo-tree File Operations | `m` | Move (with destination) |
-| Neo-tree File Operations | `y` | Copy to clipboard |
-| Neo-tree File Operations | `x` | Cut to clipboard |
-| Neo-tree File Operations | `p` | Paste from clipboard |
-| Neo-tree View Controls | `S` | Open in horizontal split |
-| Neo-tree View Controls | `s` | Open in vertical split |
-| Neo-tree View Controls | `t` | Open in new tab |
-| Neo-tree View Controls | `P` | Toggle preview |
-| Neo-tree View Controls | `C` | Close node |
-| Neo-tree View Controls | `R` | Refresh tree |
-| Neo-tree View Controls | `q` | Close Neo-tree window |
-| Neo-tree Recursive Operations | `E` | Recursively expand current folder and all subfolders |
-| Neo-tree Recursive Operations | `zO` | Recursively expand current folder and all subfolders |
-| Neo-tree Recursive Operations | `zC` | Recursively close current folder and all subfolders |
-| Neo-tree Recursive Operations | `zR` | Expand ALL folders in entire tree |
-| Neo-tree Recursive Operations | `zM` | Close all folders in tree |
-| Neo-tree Recursive Operations | `zo` | Toggle current folder open/close |
-| Neo-tree Recursive Operations | `za` | Toggle current folder open/close |
-| Neo-tree Recursive Operations | `zc` | Close current folder |
-| Neo-tree Search | `/` | Fuzzy find |
-| Neo-tree Search | `D` | Fuzzy find directories |
-| Neo-tree Search | `#` | Fuzzy sort |
-| Neo-tree Help | `?` | Show keyboard help |
+| File Explorer (Snacks) | `<C-n>` / `<leader>fe` | Toggle LazyVim's default explorer (project root), including from the sidebar |
+| File Explorer (Snacks) | `<leader>fE` | Toggle explorer (current working directory) |
+| Explorer Navigation | `<CR>` / `l` | Open file/directory |
+| Explorer Navigation | `h` | Close directory |
+| Explorer Navigation | `<BS>` | Navigate up to parent directory |
+| Explorer File Operations | `a` | Add file/directory |
+| Explorer File Operations | `d` | Delete file/directory |
+| Explorer File Operations | `r` | Rename file/directory |
+| Explorer File Operations | `c` | Copy file/directory |
+| Explorer File Operations | `m` | Move file/directory |
+| Explorer File Operations | `y` | Yank file/directory |
+| Explorer File Operations | `p` | Paste file/directory |
+| Explorer View Controls | `P` | Toggle preview |
+| Explorer View Controls | `u` | Refresh explorer |
+| Explorer View Controls | `o` | Open with system application |
 | Window Navigation | `<C-w>h` | Move to left window |
 | Window Navigation | `<C-w>l` | Move to right window |
 | Viewport Scrolling | `<C-d>` | Scroll down half a page |

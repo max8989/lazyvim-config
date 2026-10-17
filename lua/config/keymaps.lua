@@ -89,4 +89,4 @@ end, {
 keymap.set("n", "<leader>gf", ":Git fetch ", { desc = "Git: prune branches" })
 keymap.set("n", "<leader>gbd", ":Git branch -D ", { desc = "Git: delete branch" })
 
-vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", { silent = true, desc = "Toggle file tree" })
+vim.keymap.set("n", "<C-n>", "<leader>fe", { remap = true, silent = true, desc = "Explorer (Root Dir)" })
