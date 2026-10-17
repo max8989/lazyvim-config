@@ -1,0 +1,11 @@
+This configuration was extracted from max8989/omarchy-configs/config/nvim,
+captured from an Omarchy LazyVim installation on 2026-10-16.
+
+The starter's Apache-2.0 LICENSE is retained. Existing source comments and
+attribution are preserved. Personal migration modules originated in the
+existing max8989/nvim-config configuration, which includes work by jdhao.
+That source's MIT license is included in licenses/nvim-config-LICENSE.
+
+Portability changes add OS and Python-provider detection, macOS clipboard
+support, shell selection, Nix-managed dependencies, and installation checks.
+Plugins are downloaded separately and retain their respective licenses.

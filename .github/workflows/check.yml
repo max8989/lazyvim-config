@@ -1,0 +1,62 @@
+name: Check configuration
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+
+jobs:
+  portability:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    env:
+      NVIM_APPNAME: nvim-lazyvim-ci
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: rhysd/action-setup-vim@v1.6.1
+        with:
+          neovim: true
+          version: v0.12.5
+      - name: Check Lua and platform behavior
+        run: nvim --headless -u NONE -l tests/portability.lua .
+      - name: Check the installer
+        run: bash tests/install.sh
+      - name: Install Linux runtime tools
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential curl unzip ripgrep fd-find fzf
+          sudo npm install --global tree-sitter-cli
+      - name: Install macOS runtime tools
+        if: runner.os == 'macOS'
+        run: brew install ripgrep fd fzf tree-sitter lua-language-server stylua shfmt
+      - name: Install the profile and Python provider
+        run: |
+          ./scripts/install.sh
+          python_dir="${XDG_DATA_HOME:-$HOME/.local/share}/$NVIM_APPNAME/python"
+          python3 -m venv "$python_dir"
+          "$python_dir/bin/python3" -m pip install pynvim
+      - name: Restore the captured plugins
+        run: nvim --headless '+Lazy! restore' +qa
+      - name: Check full editor startup
+        run: nvim --headless '+luafile tests/startup.lua' +qa
+
+  arch:
+    runs-on: ubuntu-latest
+    container: archlinux:base
+    timeout-minutes: 15
+    env:
+      NVIM_APPNAME: nvim-lazyvim-ci
+    steps:
+      - name: Install Arch runtime tools
+        run: |
+          pacman -Syu --noconfirm --needed neovim git base-devel curl unzip ripgrep fd fzf \
+            tree-sitter-cli nodejs npm python python-pynvim lua-language-server stylua shfmt
+      - uses: actions/checkout@v7.0.1
+      - run: nvim --headless -u NONE -l tests/portability.lua .
+      - run: bash tests/install.sh
+      - run: ./scripts/install.sh
+      - run: nvim --headless '+Lazy! restore' +qa
+      - run: nvim --headless '+luafile tests/startup.lua' +qa
