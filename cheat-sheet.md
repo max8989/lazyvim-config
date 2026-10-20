@@ -12,7 +12,7 @@ Leader key: `<Space>`
 | Buffer Management | `<leader>bc` | Pick buffer to close |
 | Buffer Management | `<leader>bh` | Close buffers to the left |
 | Buffer Management | `<leader>bl` | Close buffers to the right |
-| File Navigation & Search | `<C-p>` | Find files |
+| File Navigation & Search | `<C-p>` | Find files, including from the explorer sidebar or its search input |
 | File Navigation & Search | `<leader>fg` | Live grep (search text) |
 | File Navigation & Search | `<leader><leader>` | Recent files |
 | File Navigation & Search | `<leader>bb` | Open buffers |
